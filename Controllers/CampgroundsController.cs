@@ -21,5 +21,17 @@ namespace YelpCamp_ASPNET_Angular.Controllers
         {
             return _context.Campgrounds.ToList();
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById (long id)
+        {
+            var item = _context.Campgrounds.FirstOrDefault(cg => cg.Id == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(item);
+        }
     }
 }
