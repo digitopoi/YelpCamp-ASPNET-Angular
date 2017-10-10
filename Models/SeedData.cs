@@ -22,7 +22,6 @@ namespace YelpCamp_ASPNET_Angular.Models
                     context.Campgrounds.AddRange(
                         new Campground 
                         {
-                            Id = 0,
                             Name = "Cloud's Rest",
                             Price = "$12.00",
                             Image = "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg",
@@ -31,7 +30,6 @@ namespace YelpCamp_ASPNET_Angular.Models
 
                         new Campground 
                         {
-                            Id = 1,
                             Name = "Redneck Riviera",
                             Price = "$15.00",
                             Image = "https://farm5.staticflickr.com/4153/4835814837_feef6f969b.jpg",
@@ -40,7 +38,6 @@ namespace YelpCamp_ASPNET_Angular.Models
 
                         new Campground 
                         {
-                            Id = 2,
                             Name = "Beach Bliss",
                             Price = "$35.00",
                             Image = "https://farm4.staticflickr.com/3872/14435096036_39db8f04bc.jpg",
