@@ -65,7 +65,22 @@ namespace YelpCamp_ASPNET_Angular.Controllers
             }
 
             _context.Campgrounds.Update(campground);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return new NoContentResult();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var campground = _context.Campgrounds.FirstOrDefault(c => c.Id == id);
+            if (campground == null)
+            {
+                return NotFound();
+            }
+
+            _context.Campgrounds.Remove(campground);
+            await _context.SaveChangesAsync();
+
             return new NoContentResult();
         }
     }
