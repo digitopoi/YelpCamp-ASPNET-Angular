@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using YelpCamp_ASPNET_Angular.Data;
 using YelpCamp_ASPNET_Angular.Models;
+using System.Threading.Tasks;
 
 namespace YelpCamp_ASPNET_Angular.Controllers
 {
@@ -32,6 +33,20 @@ namespace YelpCamp_ASPNET_Angular.Controllers
                 return NotFound();
             }
             return new ObjectResult(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Campground item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            _context.Campgrounds.Add(item);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtRoute("GetCampground", new { id = item.Id, item }, item);
         }
     }
 }
