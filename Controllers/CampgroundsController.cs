@@ -46,7 +46,27 @@ namespace YelpCamp_ASPNET_Angular.Controllers
             _context.Campgrounds.Add(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetCampground", new { id = item.Id, item }, item);
+            return new ObjectResult(item);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id, [FromBody] Campground item)
+        {
+            if (item == null || item.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var campground = _context.Campgrounds.FirstOrDefault(c => c.Id == id);
+
+            if (campground == null)
+            {
+                return NotFound();
+            }
+
+            _context.Campgrounds.Update(campground);
+            _context.SaveChanges();
+            return new NoContentResult();
         }
     }
 }
